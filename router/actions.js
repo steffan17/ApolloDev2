@@ -4,7 +4,8 @@ const api = {
 
 testFunc: (req, res)=>
 {
-    res.send(db.firstFunc())
+    db.createTable()
+    res.send(`OK`)
     console.log(`testing...`)
 }
 
