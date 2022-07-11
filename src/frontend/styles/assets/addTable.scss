@@ -1,0 +1,28 @@
+.addTableForm
+{
+    box-sizing: inherit;
+    height: 80vh;
+    width: 100vw;
+    margin-top: 10Vh;
+    text-align: center;
+    font-family: system-ui;
+}
+.navigationButtons
+{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5vh;
+}
+.newTableName
+{
+    margin-top: 5vh;
+    font-size: x-large;
+}
+.cancelButton:hover
+{
+    background-color: red;
+    padding: 10px;
+}

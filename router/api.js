@@ -4,5 +4,6 @@ const api = require(`./actions`)
 
 router.get('/api/', (req, res)=>{res.send('TestFunk')});
 router.get('/api/test', api.testFunc);
+router.get('/api/getTables', api.getTables);
 
 module.exports = router; 

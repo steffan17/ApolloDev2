@@ -9,8 +9,12 @@ firstFunc: ()=>
     },
 createTable: () =>
     {
-        db.prepare(`CREATE TABLE IF NOT EXISTS test (id INTEGER)`).run()
+        db.prepare(`CREATE TABLE IF NOT EXISTS test3 (id INTEGER)`).run()
         return `OK`
+    },
+getTables: ()=> 
+    {
+        return db.prepare('SELECT name FROM sqlite_schema').all()
     }
 
 }
