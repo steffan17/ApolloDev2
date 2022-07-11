@@ -3,8 +3,8 @@ const path = require('path');
 module.exports = {
   entry: 
     {
-    bundleDB: './src/js/index.js',
-    style: './src/styles/style.js'
+    bundleDB: './src/frontend/js/index.js',
+    style: './src/frontend/styles/style.js'
     },
   output: {
     filename: './js/[name].js',

@@ -1,3 +1,179 @@
 .modal {
   color: #0022ff;
 }
+
+.hamburger {
+  padding: 10px;
+  display: inline-block;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  transform: translateX(100vw);
+}
+
+.hamburger__box {
+  width: 35px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+.hamburger, .tableList {
+  transition: transform 0.3s 0.1s ease-in-out;
+}
+
+.hamburger--active {
+  transform: translatex(87vw);
+}
+
+.hamburger__box {
+  width: 35px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+}
+
+.hamburger__inner {
+  width: 100%;
+  height: 3px;
+  background-color: #171717;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background-color 0.1s 0.2s ease-in-out;
+}
+
+.hamburger__inner::before,
+.hamburger__inner::after {
+  width: 100%;
+  height: 3px;
+  background-color: #171717;
+  position: absolute;
+  content: "";
+  left: 0;
+  transition: transform 0.2s 0.2s ease-in-out;
+}
+
+.hamburger__inner::before {
+  top: -10px;
+}
+
+.hamburger__inner::after {
+  top: 10px;
+}
+
+.hamburger--active .hamburger__inner {
+  background-color: transparent;
+}
+
+.hamburger--active .hamburger__inner::after {
+  transform: rotate(-45deg) translateY(-14px);
+}
+
+.hamburger--active .hamburger__inner::before {
+  transform: rotate(45deg) translateY(14px);
+}
+
+.tableList {
+  height: 100vh;
+  width: 100vw;
+  background-color: #FFFFFF;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-100vw);
+}
+
+.tableList--active {
+  transform: translateX(0px);
+}
+
+.tableList__list {
+  margin-top: 50px;
+  list-style: none;
+  width: fit-content;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tableList__item {
+  margin-bottom: 20px;
+  width: 50vw;
+  padding: 10px;
+  text-decoration: none;
+  font-weight: bolder;
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #171717;
+  text-align: center;
+  background-color: #fafaf5;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.tableList__addTable {
+  margin-bottom: 20px;
+  width: 50vw;
+  padding: 10px;
+  text-decoration: none;
+  font-weight: bolder;
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #171717;
+  text-align: center;
+  background-color: #fafaf5;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  margin-top: 10vh;
+}
+
+.--selected {
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  background-color: #fafa0048;
+}
+
+.addTableForm {
+  box-sizing: inherit;
+  height: 80vh;
+  width: 100vw;
+  margin-top: 10Vh;
+  text-align: center;
+  font-family: system-ui;
+}
+
+.navigationButtons {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5vh;
+}
+
+.newTableName {
+  margin-top: 5vh;
+  font-size: x-large;
+}
+
+.cancelButton:hover {
+  background-color: red;
+  padding: 10px;
+}
+
+.testButton {
+  position: absolute;
+  bottom: 0;
+}
+
+body {
+  margin: 0;
+}

@@ -1,0 +1,142 @@
+
+.hamburger {
+    padding: 10px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    transform: translateX(100vw);
+  }
+  .hamburger__box {
+    width: 35px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+  }
+
+  html {
+    box-sizing: border-box;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+  
+  $dark: #171717;
+  $light: #FFFFFF;
+  $button: #fafaf5;
+  $buttonSelected: #fafa0048;
+  
+  .hamburger, .tableList {
+    transition: transform .3s .1s ease-in-out;
+  }
+  
+  .hamburger--active {
+    transform: translatex(87vw);
+  }
+  
+  .hamburger__box {
+    width: 35px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+  }
+  
+  @mixin hamburger-line {
+    width: 100%;
+    height: 3px;
+    background-color: $dark;
+    position: absolute;
+  }
+  
+  .hamburger__inner {
+    @include hamburger-line;
+    
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background-color .1s .2s ease-in-out;
+  }
+  
+  .hamburger__inner::before,
+  .hamburger__inner::after {
+    @include hamburger-line;
+    
+    content: '';
+    left: 0;
+    transition: transform .2s .2s ease-in-out;
+  } 
+  
+  .hamburger__inner::before {
+    top: -10px;
+  }
+  
+  .hamburger__inner::after {
+    top: 10px;
+  }
+  
+  .hamburger--active .hamburger__inner {
+    background-color: transparent;
+  }
+
+  .hamburger--active .hamburger__inner::after
+  {
+      transform: rotate(-45deg) translateY(-14px);
+  }
+  .hamburger--active .hamburger__inner::before
+  {
+      transform: rotate(45deg) translateY(14px);
+  }
+  
+  
+  .tableList {
+    height: 100vh;
+    width: 100vw;
+    background-color: $light;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-100vw);
+  }
+  
+  .tableList--active {
+    transform: translateX(0px);
+  }
+  
+  .tableList__list {
+    margin-top: 50px;
+    list-style: none;
+    width: fit-content;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+   @mixin tableList__item {
+    margin-bottom: 20px;
+    width: 50vw;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    color: $dark;
+    text-align: center;
+    background-color: $button;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  }
+  .tableList__item{
+      @include tableList__item
+  }
+ 
+  .tableList__addTable
+  {
+      @include tableList__item;
+      margin-top: 10vh
+  }
+  .--selected
+  {
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+    background-color: $buttonSelected;
+  }
