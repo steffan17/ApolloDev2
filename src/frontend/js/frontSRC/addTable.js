@@ -1,10 +1,11 @@
 const app = document.getElementById('app')
+const content = document.getElementById('content')
 const renderNewTableNameForm = ()=>
 {
     return `
     <div id='addTableForm' class='addTableForm'>
-    <input type="text" name="newTableName" id="newTableName" class="newTableName" placeholder="Podaj nazwę tablei...">
-    <div class="navigationButtons"><div class="cancelButton">Anuluj</div><div class="acceptButton">Dalej</div></div>
+    <input type="text" name="newTableName" id="newTableName" class="newTableName" placeholder="Podaj nazwę tabeli...">
+    <div class="navigationButtons"><div class="newTableCancelButton">Anuluj</div><div class="newTableNextButton">Dalej</div></div>
     </div>
     `
 
@@ -14,7 +15,13 @@ const addTable = {
 
     addTableStart: ()=>
     {
-    app.insertAdjacentHTML('afterbegin',renderNewTableNameForm())
+    
+    content.innerHTML = renderNewTableNameForm()
+    const newTableCancelButton = document.querySelector('.newTableCancelButton')
+    .addEventListener('click',()=>{console.log('bye'); content.innerHTML = ''})
+    const newTableNextButton = document.querySelector('.newTableNextButton')
+    .addEventListener('click',()=>{console.log('nextButton was clicked')})
+
     }
 }
 
