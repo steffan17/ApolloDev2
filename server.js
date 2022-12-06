@@ -7,7 +7,7 @@ const apiRouter = require('./router/api')
 
 
 app.engine('handlebars', expresshandlebars.engine({
-    defaultLayout: 'main',
+    defaultLayout: 'main'
   }))
 
 app.set('view engine', 'handlebars')
@@ -23,6 +23,11 @@ app.use('/', apiRouter)
 app.get('/db', (req,res)=>{
     var scripts = [{script: '/js/bundleDB.js'}];
     res.render('db', {title: "DB", scripts: scripts})
+})
+
+app.get('/db2', (req,res)=>{
+    var scripts = [{script: '/js/bundleDB2.js'}];
+    res.render('db2', {title: "DB2", scripts: scripts})
 })
 
 app.get('/', (req,res)=>{

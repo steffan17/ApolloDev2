@@ -7,6 +7,11 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="../css/style.min.css">
 </head>
-{{{body}}}
+    </body>
+    {{{body}}}
 
+    {{#each scripts}}
+    <script src="{{script}}"></script>
+    {{/each}}
+    </body>
 </html>

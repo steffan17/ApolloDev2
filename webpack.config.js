@@ -4,6 +4,7 @@ module.exports = {
   entry: 
     {
     bundleDB: './src/frontend/js/index.js',
+    bundleDB2: './src/frontend/js/db2.js',
     style: './src/frontend/styles/style.js'
     },
   output: {
