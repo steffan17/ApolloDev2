@@ -14,7 +14,7 @@ console.log(`it's working..:-)`)
 /* 2 */
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-const addTable = __webpack_require__(6)
+const addTable = __webpack_require__(3)
 const app = document.getElementById('app')
 
 app.insertAdjacentHTML('afterbegin','<div id="testButton" class="testButton">TestButton<div>');
@@ -112,10 +112,7 @@ getTables();
 
 
 /***/ }),
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */
+/* 3 */
 /***/ ((module) => {
 
 const app = document.getElementById('app')
