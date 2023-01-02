@@ -180,6 +180,10 @@ html {
   padding: 5px;
 }
 
+.tableViewCaption {
+  text-align: left;
+}
+
 body {
   margin: 0;
 }
