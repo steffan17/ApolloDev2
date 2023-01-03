@@ -1,7 +1,7 @@
 const db2_getTable = {
 
 
-renderHeaderTableView: (tableName, data)=>
+renderHeaderTableView: (data)=>
     {   
        
             
@@ -17,38 +17,55 @@ renderHeaderTableView: (tableName, data)=>
                 });
             return fragment
     },
-renderBodyTableView: (data)=>
+    renderBodyTableView: (data, dataRow)=>
     {   
-       
-            const tableViewTemplate = document.querySelector('#tableViewTemplate')
-            
             const fragment = document.createDocumentFragment();
-            data.forEach(label => 
+            const newElementTR = document.createElement('tr'); 
+            db2_getTable.getTableHeadNames(data).map(headNamesTableItems=>
                 {
-                const newElement = document.createElement('td'); 
-                newElement.className='tableView tableViewTD'
-                newElement.textContent = label;
-                fragment.appendChild(newElement);
-            
-                });
+                const newElementTD = document.createElement('td'); 
+                newElementTD.className='tableView tableViewTD'
+                newElementTD.textContent = dataRow[headNamesTableItems];
+                newElementTR.appendChild(newElementTD);
+                })
+
+                const newElementTDEdit = document.createElement('td'); 
+                newElementTDEdit.className='tableView tableViewTD tableViewTDEdit'
+                newElementTDEdit.textContent = `Edit`;
+                newElementTR.appendChild(newElementTDEdit);
+
+                const newElementTDDelete = document.createElement('td'); 
+                newElementTDDelete.className='tableView tableViewTD tableViewTDEdit'
+                newElementTDDelete.textContent = `Delete`;
+                newElementTR.appendChild(newElementTDDelete);
+
+                fragment.appendChild(newElementTR)
+                    
+                    
+              
             return fragment
     },
 
-renderTableView: (data)=>{
+renderTableView: (tableName, data)=>{
     if ('content' in document.createElement('template')) 
     {
         const tableViewTemplate = document.querySelector('#tableViewTemplate')
         
         const myClone = tableViewTemplate.content.cloneNode(true);
         const thead_tr = myClone.querySelector(`thead > tr`)
-        const tbody_tr = myClone.querySelector(`tbody > tr`)
+        const tbody_tr = myClone.querySelector(`tbody`)
         const caption = myClone.querySelector(`caption`)
 
         caption.className = 'tableView tableViewCaption'
         caption.textContent = tableName
 
+
         thead_tr.appendChild(db2_getTable.renderHeaderTableView(db2_getTable.getTableHeadNames(data)))
-        tbody_tr.appendChild(db2_getTable.renderBodyTableView(data))
+        
+        data.forEach(dataRow => 
+            {
+        tbody_tr.appendChild(db2_getTable.renderBodyTableView(data, dataRow))
+            })
         
         return myClone
   

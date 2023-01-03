@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 8:
+/***/ 5:
 /***/ ((module) => {
 
 const db2_getTable = {
@@ -9,6 +9,10 @@ const db2_getTable = {
 
 renderHeaderTableView: (data)=>
     {   
+       
+            
+            const tableViewTemplate = document.querySelector('#tableViewTemplate')
+            
             const fragment = document.createDocumentFragment();
             data.forEach(label => 
                 {
@@ -19,8 +23,7 @@ renderHeaderTableView: (data)=>
                 });
             return fragment
     },
-
-renderBodyTableView: (data, dataRow)=>
+    renderBodyTableView: (data, dataRow)=>
     {   
             const fragment = document.createDocumentFragment();
             const newElementTR = document.createElement('tr'); 
@@ -133,7 +136,7 @@ const app = document.querySelector(`#app`)
 const tablesList = document.querySelector('#tablesList')
 
 const content = document.querySelector(`#content`)
-const db2_getTable=__webpack_require__(8)
+const db2_getTable=__webpack_require__(5)
        
 
 const renderTablesList = (data)=>{
@@ -142,7 +145,7 @@ const renderTablesList = (data)=>{
         const myCloneTable = []
         data.map((data)=>{
             const myClone = tableListItemTemplate.content.cloneNode(true);
-            const li = myClone.querySelectorAll(`h2`)
+            const li = myClone.querySelectorAll(`h3`)
             li[0].textContent = data.name
             myCloneTable.push(myClone)
     
@@ -158,8 +161,8 @@ const renderTablesList = (data)=>{
             renderTablesList(data).map((data)=>{
                 tablesList.appendChild(data)
             })
-            const tablesListItems = [...document.querySelectorAll(`.tableListItem > h2`)]
-            console.log([...document.querySelectorAll(`.tableListItem > h2`)])
+            const tablesListItems = [...document.querySelectorAll(`.tableListItem > h3`)]
+            console.log([...document.querySelectorAll(`.tableListItem > h3`)])
             tablesListItems.map((data)=>{
                 data.addEventListener('click',()=>{
                     getTable(data.textContent)
