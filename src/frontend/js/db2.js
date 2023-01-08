@@ -47,7 +47,14 @@ const renderTablesList = (data)=>{
             console.log(data)
             const tableView = document.querySelector(`#tableView`)
             content.replaceChild(db2_getTable.renderTableView(tableName, data), tableView)
+            const tableViewDeleteButtons= [...document.querySelectorAll(`.tableViewTDButton`)]
             
+            tableViewDeleteButtons.map(tableViewDeleteButton=>{
+                tableViewDeleteButton.addEventListener('click',(clickedElement)=>{
+                    const clickedButtonFunction = clickedElement.target.textContent
+                    console.log(`button: ${clickedButtonFunction} clicked`)
+                })
+            }) 
             
         })
     }

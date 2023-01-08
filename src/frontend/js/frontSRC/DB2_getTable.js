@@ -30,12 +30,12 @@ renderHeaderTableView: (data)=>
                 })
 
                 const newElementTDEdit = document.createElement('td'); 
-                newElementTDEdit.className='tableView tableViewTD tableViewTDEdit'
+                newElementTDEdit.className='tableView tableViewTD tableViewTDButton tableViewTDEdit'
                 newElementTDEdit.textContent = `Edit`;
                 newElementTR.appendChild(newElementTDEdit);
 
                 const newElementTDDelete = document.createElement('td'); 
-                newElementTDDelete.className='tableView tableViewTD tableViewTDEdit'
+                newElementTDDelete.className='tableView tableViewTD tableViewTDButton tableViewTDDelete'
                 newElementTDDelete.textContent = `Delete`;
                 newElementTR.appendChild(newElementTDDelete);
 

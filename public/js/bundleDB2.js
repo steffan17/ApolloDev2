@@ -36,12 +36,12 @@ renderHeaderTableView: (data)=>
                 })
 
                 const newElementTDEdit = document.createElement('td'); 
-                newElementTDEdit.className='tableView tableViewTD tableViewTDEdit'
+                newElementTDEdit.className='tableView tableViewTD tableViewTDButton tableViewTDEdit'
                 newElementTDEdit.textContent = `Edit`;
                 newElementTR.appendChild(newElementTDEdit);
 
                 const newElementTDDelete = document.createElement('td'); 
-                newElementTDDelete.className='tableView tableViewTD tableViewTDEdit'
+                newElementTDDelete.className='tableView tableViewTD tableViewTDButton tableViewTDDelete'
                 newElementTDDelete.textContent = `Delete`;
                 newElementTR.appendChild(newElementTDDelete);
 
@@ -179,7 +179,14 @@ const renderTablesList = (data)=>{
             console.log(data)
             const tableView = document.querySelector(`#tableView`)
             content.replaceChild(db2_getTable.renderTableView(tableName, data), tableView)
+            const tableViewDeleteButtons= [...document.querySelectorAll(`.tableViewTDButton`)]
             
+            tableViewDeleteButtons.map(tableViewDeleteButton=>{
+                tableViewDeleteButton.addEventListener('click',(clickedElement)=>{
+                    const clickedButtonFunction = clickedElement.target.textContent
+                    console.log(`button: ${clickedButtonFunction} clicked`)
+                })
+            }) 
             
         })
     }
