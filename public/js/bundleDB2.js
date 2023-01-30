@@ -35,14 +35,20 @@ renderHeaderTableView: (data)=>
                 newElementTR.appendChild(newElementTD);
                 })
 
-                const newElementTDEdit = document.createElement('td'); 
+                const newElementTDEdit = document.createElement('td');
+                const newElementDIVEdit = document.createElement('div');
                 newElementTDEdit.className='tableView tableViewTD tableViewTDButton tableViewTDEdit'
-                newElementTDEdit.textContent = `Edit`;
+                newElementDIVEdit.className='tableView tableViewDIV tableViewDIVButton tableViewDIVEdit'
+                newElementDIVEdit.textContent = `Edit`;
+                newElementTDEdit.appendChild(newElementDIVEdit);
                 newElementTR.appendChild(newElementTDEdit);
 
-                const newElementTDDelete = document.createElement('td'); 
+                const newElementTDDelete = document.createElement('td');
+                const newElementDIVDelete = document.createElement('div');
                 newElementTDDelete.className='tableView tableViewTD tableViewTDButton tableViewTDDelete'
-                newElementTDDelete.textContent = `Delete`;
+                newElementDIVDelete.className='tableView tableViewDIV tableViewDIVButton tableViewDIVDelete'
+                newElementDIVDelete.textContent = `Delete`;
+                newElementTDDelete.appendChild(newElementDIVDelete);
                 newElementTR.appendChild(newElementTDDelete);
 
                 fragment.appendChild(newElementTR)
@@ -98,6 +104,32 @@ getTableHeadNames: (data)=>{
 
 module.exports = db2_getTable;
 
+/***/ }),
+
+/***/ 6:
+/***/ ((module) => {
+
+const DB2_updateDeleteRow = {
+
+    deleteRow: (tableName, clickedElement)=>{
+        console.log(`new file function`)
+    },
+    updateRowShowtext: (tableName, clickedElement)=>
+    {
+        console.log(clickedElement.target.parentElement.parentElement.childElementCount)
+
+        clickedElement.target.parentElement.parentElement.classList.add("selectedRow")
+        for(let i=0; i< clickedElement.target.parentElement.parentElement.children.length-2; i++ )
+        {
+            console.log(clickedElement.target.parentElement.parentElement.children[i])
+            clickedElement.target.parentElement.parentElement.children[i].textContent=`<div>WOW</div>`
+        }
+    }
+
+}
+
+module.exports = DB2_updateDeleteRow;
+
 /***/ })
 
 /******/ 	});
@@ -136,7 +168,8 @@ const app = document.querySelector(`#app`)
 const tablesList = document.querySelector('#tablesList')
 
 const content = document.querySelector(`#content`)
-const db2_getTable=__webpack_require__(5)
+const DB2_getTable=__webpack_require__(5);
+const DB2_updateDeleteRow = __webpack_require__(6);
        
 
 const renderTablesList = (data)=>{
@@ -166,6 +199,8 @@ const renderTablesList = (data)=>{
             tablesListItems.map((data)=>{
                 data.addEventListener('click',()=>{
                     getTable(data.textContent)
+
+
                 })
                 
             }) 
@@ -178,20 +213,46 @@ const renderTablesList = (data)=>{
         {
             console.log(data)
             const tableView = document.querySelector(`#tableView`)
-            content.replaceChild(db2_getTable.renderTableView(tableName, data), tableView)
-            const tableViewDeleteButtons= [...document.querySelectorAll(`.tableViewTDButton`)]
+            content.replaceChild(DB2_getTable.renderTableView(tableName, data), tableView)
+            const tableViewDeleteButtons= [...document.querySelectorAll(`.tableViewDIVButton`)]
             
             tableViewDeleteButtons.map(tableViewDeleteButton=>{
                 tableViewDeleteButton.addEventListener('click',(clickedElement)=>{
                     const clickedButtonFunction = clickedElement.target.textContent
-                    console.log(`button: ${clickedButtonFunction} clicked`)
+                    
+                    
+                    if(clickedElement.target.classList.contains(`tableViewDIVDelete`))
+                    {
+                        DB2_updateDeleteRow.deleteRow(tableName, clickedElement);
+                    }
+                    if(clickedElement.target.classList.contains(`tableViewDIVEdit`))
+                    {
+                        DB2_updateDeleteRow.updateRowShowtext(tableName, clickedElement)
+                    }
                 })
             }) 
             
-        })
+        }) 
     }
     
     getTables();
+
+    const sendButton = document.getElementById(`sendStmt`)
+    sendButton.addEventListener('click',()=>{
+        const stmtText = document.getElementById(`stmtText`).value
+        //console.log(stmtText)
+        const body =  JSON.stringify({msg: stmtText})
+        const headers = { 'Content-Type': 'application/json' }
+
+        fetch('api/makeSomeChanges', {
+            method: 'POST',
+            body,
+            headers
+          }).then(res=>{
+            console.log(res.json())
+          });
+    })
+
 
     
 })();

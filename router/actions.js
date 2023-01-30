@@ -25,6 +25,11 @@ getTable: (req,res) =>
 {
     const tableName = req.query.tableName
     res.send(db.getTable(tableName))
+},
+
+makeSomeChanges: (req, res)=>
+{
+    res.send(db.makeSomeChanges(JSON.stringify(req.body.msg)))
 }
 
 }

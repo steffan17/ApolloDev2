@@ -29,14 +29,20 @@ renderHeaderTableView: (data)=>
                 newElementTR.appendChild(newElementTD);
                 })
 
-                const newElementTDEdit = document.createElement('td'); 
+                const newElementTDEdit = document.createElement('td');
+                const newElementDIVEdit = document.createElement('div');
                 newElementTDEdit.className='tableView tableViewTD tableViewTDButton tableViewTDEdit'
-                newElementTDEdit.textContent = `Edit`;
+                newElementDIVEdit.className='tableView tableViewDIV tableViewDIVButton tableViewDIVEdit'
+                newElementDIVEdit.textContent = `Edit`;
+                newElementTDEdit.appendChild(newElementDIVEdit);
                 newElementTR.appendChild(newElementTDEdit);
 
-                const newElementTDDelete = document.createElement('td'); 
+                const newElementTDDelete = document.createElement('td');
+                const newElementDIVDelete = document.createElement('div');
                 newElementTDDelete.className='tableView tableViewTD tableViewTDButton tableViewTDDelete'
-                newElementTDDelete.textContent = `Delete`;
+                newElementDIVDelete.className='tableView tableViewDIV tableViewDIVButton tableViewDIVDelete'
+                newElementDIVDelete.textContent = `Delete`;
+                newElementTDDelete.appendChild(newElementDIVDelete);
                 newElementTR.appendChild(newElementTDDelete);
 
                 fragment.appendChild(newElementTR)

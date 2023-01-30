@@ -7,4 +7,6 @@ router.get('/api/test', api.testFunc);
 router.get('/api/getTables', api.getTables);
 router.get('/api/getTable', api.getTable)
 
+router.post('/api/makeSomeChanges', api.makeSomeChanges)
+
 module.exports = router; 

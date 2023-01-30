@@ -17,7 +17,13 @@ getTable: (tableName)=>
         return db.prepare(`SELECT * FROM ${tableName}`).all()
     },
 
-
+makeSomeChanges: (sqlStmt) =>
+    {
+        //db.prepare(sqlStmt).run()
+        
+        console.log(sqlStmt)
+        return 'OK'
+    },
 
 
 createTable: (tableName) =>
