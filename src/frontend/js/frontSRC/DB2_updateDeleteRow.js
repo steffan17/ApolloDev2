@@ -6,13 +6,20 @@ const DB2_updateDeleteRow = {
     updateRowShowtext: (tableName, clickedElement)=>
     {
         console.log(clickedElement.target.parentElement.parentElement.childElementCount)
+        const editTextAreaDIV = document.createElement(`div`)
+        const editTextAreaInput = document.createElement(`input`)
+        editTextAreaInput.type = `text`
+        editTextAreaInput.classList.add(`editTextInput`)
+        editTextAreaDIV.appendChild(editTextAreaInput)
 
         clickedElement.target.parentElement.parentElement.classList.add("selectedRow")
-        for(let i=0; i< clickedElement.target.parentElement.parentElement.children.length-2; i++ )
-        {
-            console.log(clickedElement.target.parentElement.parentElement.children[i])
-            clickedElement.target.parentElement.parentElement.children[i].textContent=`<div>WOW</div>`
-        }
+
+
+        for(let i = 0; i < clickedElement.target.parentElement.parentElement.children.length-2;i++)
+            {
+                clickedElement.target.parentElement.parentElement.children[i].innerHTML = ''
+                clickedElement.target.parentElement.parentElement.children[i].appendChild(editTextAreaDIV.cloneNode(true))
+            }
     }
 
 }

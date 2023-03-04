@@ -23,9 +23,12 @@ renderHeaderTableView: (data)=>
             const newElementTR = document.createElement('tr'); 
             db2_getTable.getTableHeadNames(data).map(headNamesTableItems=>
                 {
-                const newElementTD = document.createElement('td'); 
+                const newElementTD = document.createElement('td');
+                const newElementDivTD = document.createElement('div'); 
                 newElementTD.className='tableView tableViewTD'
-                newElementTD.textContent = dataRow[headNamesTableItems];
+                newElementDivTD.className='tableView tableViewDiv'
+                newElementDivTD.textContent = dataRow[headNamesTableItems];
+                newElementTD.appendChild(newElementDivTD);
                 newElementTR.appendChild(newElementTD);
                 })
 

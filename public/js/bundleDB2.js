@@ -29,9 +29,12 @@ renderHeaderTableView: (data)=>
             const newElementTR = document.createElement('tr'); 
             db2_getTable.getTableHeadNames(data).map(headNamesTableItems=>
                 {
-                const newElementTD = document.createElement('td'); 
+                const newElementTD = document.createElement('td');
+                const newElementDivTD = document.createElement('div'); 
                 newElementTD.className='tableView tableViewTD'
-                newElementTD.textContent = dataRow[headNamesTableItems];
+                newElementDivTD.className='tableView tableViewDiv'
+                newElementDivTD.textContent = dataRow[headNamesTableItems];
+                newElementTD.appendChild(newElementDivTD);
                 newElementTR.appendChild(newElementTD);
                 })
 
@@ -117,13 +120,20 @@ const DB2_updateDeleteRow = {
     updateRowShowtext: (tableName, clickedElement)=>
     {
         console.log(clickedElement.target.parentElement.parentElement.childElementCount)
+        const editTextAreaDIV = document.createElement(`div`)
+        const editTextAreaInput = document.createElement(`input`)
+        editTextAreaInput.type = `text`
+        editTextAreaInput.classList.add(`editTextInput`)
+        editTextAreaDIV.appendChild(editTextAreaInput)
 
         clickedElement.target.parentElement.parentElement.classList.add("selectedRow")
-        for(let i=0; i< clickedElement.target.parentElement.parentElement.children.length-2; i++ )
-        {
-            console.log(clickedElement.target.parentElement.parentElement.children[i])
-            clickedElement.target.parentElement.parentElement.children[i].textContent=`<div>WOW</div>`
-        }
+
+
+        for(let i = 0; i < clickedElement.target.parentElement.parentElement.children.length-2;i++)
+            {
+                clickedElement.target.parentElement.parentElement.children[i].innerHTML = ''
+                clickedElement.target.parentElement.parentElement.children[i].appendChild(editTextAreaDIV.cloneNode(true))
+            }
     }
 
 }
